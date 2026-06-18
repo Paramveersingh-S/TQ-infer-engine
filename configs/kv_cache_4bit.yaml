@@ -1,0 +1,20 @@
+algorithms:
+  qjl:
+    proj_dim_multiplier: 1.0
+    seed: 42
+  polar_quant:
+    rotation_seed: 42
+    epsilon: 1.0e-8
+
+kv_cache:
+  default_bits: 4.0
+  compress_keys: true
+  compress_values: true
+
+benchmark:
+  kv:
+    dataset: wikitext
+    dataset_config: wikitext-2-raw-v1
+    split: test
+    max_tokens: 2048
+    bits_to_test: [4.0, 16.0]

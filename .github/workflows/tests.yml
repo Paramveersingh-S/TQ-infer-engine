@@ -1,0 +1,23 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy scipy einops pytest
+          pip install faiss-cpu
+          pip install -e .
+
+      - name: Run CPU-safe unit tests
+        run: pytest tests/ -v --ignore=tests/test_kv_cache.py -x --tb=short

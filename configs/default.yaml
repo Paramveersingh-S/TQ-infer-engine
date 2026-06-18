@@ -1,0 +1,39 @@
+algorithms:
+  qjl:
+    proj_dim_multiplier: 1.0  # proj_dim = input_dim * multiplier
+    seed: 42
+  polar_quant:
+    rotation_seed: 42
+    epsilon: 1.0e-8            # numerical stability floor
+
+kv_cache:
+  default_bits: 4.0
+  compress_keys: true
+  compress_values: true
+  supported_architectures:
+    - LlamaForCausalLM
+    - MistralForCausalLM
+    - Gemma2ForCausalLM
+
+search:
+  default_bits: 4.0
+  batch_size: 100000          # vectors processed at once during add()
+
+benchmark:
+  kv:
+    dataset: wikitext
+    dataset_config: wikitext-2-raw-v1
+    split: test
+    max_tokens: 2048
+    bits_to_test: [2.0, 3.0, 4.0, 16.0]
+  ann:
+    dataset: glove
+    dims: 200
+    n_train: 1000000
+    n_query: 10000
+    k_values: [1, 10, 100]
+
+demo:
+  model_name: google/gemma-2-2b-it
+  port: 7860
+  preload_search_vectors: 10000

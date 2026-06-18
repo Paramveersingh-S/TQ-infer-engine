@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  tqe-demo:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+    volumes:
+      - ./tqe:/app/tqe
+  tqe-tests:
+    build: .
+    command: pytest tests/ -v --tb=short
+    volumes:
+      - ./tqe:/app/tqe
+      - ./tests:/app/tests

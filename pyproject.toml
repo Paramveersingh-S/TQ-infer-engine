@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "turboquant-inference-engine"
+version = "0.1.0"
+description = "TurboQuant KV Cache Compression and Semantic Search Engine"
+requires-python = ">=3.11"
+authors = [{name = "Your Name"}]

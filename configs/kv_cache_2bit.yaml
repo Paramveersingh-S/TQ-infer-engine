@@ -1,0 +1,8 @@
+kv_cache:
+  default_bits: 2.0
+  compress_keys: true
+  compress_values: true
+
+benchmark:
+  kv:
+    bits_to_test: [2.0, 16.0]
